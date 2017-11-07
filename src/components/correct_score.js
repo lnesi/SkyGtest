@@ -2,11 +2,11 @@ import React , { Component } from 'react';
 import _ from 'lodash';
 export default class CorrectScore extends Component{
 	renderRows(){
-		console.log(this.props.outcomes)
+		let rows=[];
 		const homes=_.filter(this.props.outcomes,'type','home');
 		const draws=_.filter(this.props.outcomes,'type','draw');
 		const aways=_.filter(this.props.outcomes,'type','away');
-		const rows=homes.map((v,i)=>{
+		for(var i=0;i<this.props.outcomes.length;i++){
 			let homeValue='-';
 			let drawValue='-';
 			let awayValue='-';
@@ -25,15 +25,16 @@ export default class CorrectScore extends Component{
 				scoreAway="("+aways[i].score.home+" - "+aways[i].score.away+")"
 				 awayValue=this.formatValue(aways[i].price);
 			}
-			
-			return (
-				<tr key={i}>
-					<td><span className="text-danger">{scoreHome}</span> {homeValue}</td>
-					<td><span className="text-danger">{scoreDraw}</span> {drawValue}</td>
-					<td><span className="text-danger">{scoreAway}</span> {awayValue}</td>
-				</tr>
-			)
-		});
+			if(homeValue!="-" || drawValue!="-" || awayValue!="-"){
+				rows.push(
+					<tr key={i}>
+						<td><span className="text-danger">{scoreHome}</span> {homeValue}</td>
+						<td><span className="text-danger">{scoreDraw}</span> {drawValue}</td>
+						<td><span className="text-danger">{scoreAway}</span> {awayValue}</td>
+					</tr>
+				)
+			}
+		};
 		return rows;
 	}
 	formatValue(price){
@@ -41,6 +42,9 @@ export default class CorrectScore extends Component{
 		return price.decimal;
 	}
 	render(){
+		if(!this.props.outcomes){
+			return <div>Loading</div>
+		}
 
 		return(
 			<div>
