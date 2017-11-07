@@ -2,38 +2,17 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { fetchEvent } from '../actions';
 import moment from 'moment';
-import MarketsTable from './markets_table';
+import MarketPanel from './market_panel';
 
 class FootballDetail extends Component{
-	constructor(props){
-		super(props);
-		this.onClickPanel=this.onClickPanel.bind(this);
-	}
+	
 	componentDidMount(){
 		const {eventId} =this.props.match.params;
 		this.props.fetchEvent(eventId);
+		
 	}
-	onClickPanel(marketId){
-		document.querySelectorAll(".market-detail").forEach((elm)=>{
-			elm.classList.remove('show');
-		});
-		document.getElementById(marketId).classList.add('show');
-	}
-	renderMarket(market){
-		return(
-			<div className="card" key={market.marketId}>
-			    <div className="card-header" role="tab" id="headingOne" onClick={()=>{this.onClickPanel(market.marketId)}}>
-			      <h5 className="mb-0">{market.name}</h5>
-			    </div>
 
-			    <div id={market.marketId} className="collapse market-detail"  data-parent="#accordion">
-			      <div className="card-body">
-			        
-			      </div>
-			    </div>
-			  </div>
-			)
-	}
+	
 	render(){
 		if(!this.props.event_data){
 			return (
@@ -70,7 +49,7 @@ class FootballDetail extends Component{
 					<div className="col col-sm-12">
 						<div id="accordion" role="tablist">
  							{markets.map((market)=>{
- 								return this.renderMarket(market)
+ 								return (<MarketPanel  use_decimal={this.props.use_decimal} market={market} outcomes={this.props.event_data.outcomes[market.marketId]} key={market.marketId} />)
  							})}
 						</div>
 					</div>
@@ -81,6 +60,6 @@ class FootballDetail extends Component{
 }
 
 function mapStateToProps(state){
-	return {event_data:state.current_event};
+	return {event_data:state.current_event,use_decimal:state.use_decimal};
 }
 export default connect(mapStateToProps,{fetchEvent})(FootballDetail)
