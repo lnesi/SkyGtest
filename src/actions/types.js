@@ -1,0 +1,2 @@
+export const FETCH_FOOTBALL_LIVE = 'FETCH_FOOTBALL_LIVE';
+export const FETCH_EVENT = 'FETCH_EVENT';
