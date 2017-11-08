@@ -10,18 +10,23 @@ Start Server:
 ```
 
 Asuming Docker Image is runing in same machine for:
+
 API: http://localhost:8888
+
 WS: ws://localhost:8889
 
 
 Websocket Implemented: only in /football/live
+
 PRICE_CHANGE
+
 OUTCOME_STATUS
+
 
 In the console you can review socket activity and on the front end app you can reivew new activiy on suspended and prices difficult to follow needs to add visual aids for when a value gets updated
 
 ### DEMO CONSOLE:
-
+```
 SOCKET_PRICE_CHANGE
 Maccabi Ironi Kiryat Ata 0 v 0 Hapoel Shfaram
 CURRENT OUTCOME Maccabi Ironi Kiryat Ata {decimal: "2.1", num: "11", den: "10"}
@@ -41,5 +46,5 @@ SOCKET_OUTCOME_STATUS
 Shahrdari Hamedan 0 v 0 Khoosheh Talai
 CURRENT OUTCOME Shahrdari Hamedan {decimal: "2.1", num: "11", den: "10"}
 NEW OUTECOME Shahrdari Hamedan {decimal: "2.1", num: "11", den: "10"}
-
+```
 
