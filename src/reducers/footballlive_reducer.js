@@ -15,7 +15,7 @@ export default function(state=initialState,action){
 				const event=_.filter(state.events,'eventId',action.payload.eventId)[0];
 				console.log(event.name);
 				const outcome=_.filter(newState.outcomes[action.payload.marketId],'outcomeId',action.payload.outcomeId)[0];
-				console.log('CURRENT OUTCOME',outcome.name,outcome.price);
+				console.log('CURRENT OUTCOME',outcome.name,outcome);
 				
 				const newOutcome={...outcome,...action.payload};
 				newState.outcomes[action.payload.marketId]=newState.outcomes[action.payload.marketId].map(function(v,i){
@@ -24,7 +24,7 @@ export default function(state=initialState,action){
 					}
 					return v;
 				});
-				console.log('NEW OUTECOME',newOutcome.name,newOutcome.price);
+				console.log('NEW OUTECOME',newOutcome.name,newOutcome);
 				return newState;
 			}else{
 				return state;
