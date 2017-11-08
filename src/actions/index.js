@@ -41,6 +41,17 @@ export function fetchOutcome(marketId){
 		});
 	}
 	
+}
 
-	
+export function connectSocket(){
+	return function(dispatch){
+		const w = new WebSocket("ws://localhost:8889");
+		w.addEventListener("message", message =>{
+
+			let data=JSON.parse(message.data);
+			//console.log(data.type,data.data);
+			dispatch({type:"SOCKET_"+data.type,payload:data.data})
+		} );
+		w.onopen = ()=> w.send(JSON.stringify({type: "subscribe", keys: ["o.*"]}));
+	}	
 }

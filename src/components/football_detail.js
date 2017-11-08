@@ -23,6 +23,7 @@ class FootballDetail extends Component{
 		
 		return (
 			<div className="football-details">
+				
 				<div className="text-center row ">
 					<div className="col col-sm-12">
 						{this.props.event_data.event.linkedEventTypeName}
@@ -41,7 +42,7 @@ class FootballDetail extends Component{
 				</div>
 				<div className="text-center row ">
 					<div className="col col-sm-12">
-					{moment(this.props.event_data.event.startTime).format('MMMM Do YYYY, h:mm:ss a')}
+					{this.props.event_data.event.typeName} - {moment(this.props.event_data.event.startTime).format('MMMM Do YYYY, h:mm:ss a')}
 					</div>
 				</div>
 				<hr/>

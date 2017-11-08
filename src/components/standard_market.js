@@ -1,8 +1,8 @@
 import React , { Component } from 'react';
-
+import numeral from 'numeral';
 export default class StandardMarket extends Component{
 	renderOutcome(outcome){
-		let price=outcome.price.decimal;
+		let price=numeral(outcome.price.decimal).format('0.00');
 		if(!this.props.use_decimal) price=outcome.price.num+"/"+outcome.price.den;
 		return (
 			<tr key={outcome.outcomeId}>

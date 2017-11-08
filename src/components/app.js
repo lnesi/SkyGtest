@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { fetchFootballLive } from '../actions'
 import {BrowserRouter,Route, Switch } from 'react-router-dom';
 
 import FootballLive from './football_live';
@@ -8,9 +6,7 @@ import FootballDetail from './football_detail';
 import Header from './header';
 import Landing from './landing';
 class App extends Component {
-  componentWillMount(){
-  	this.props.fetchFootballLive();
-  }
+  
 
   render() {
     return (
@@ -29,4 +25,4 @@ class App extends Component {
     );
   }
 }
-export default connect(null,{fetchFootballLive})(App);
+export default App;

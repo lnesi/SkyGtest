@@ -1,4 +1,5 @@
 import React , { Component } from 'react';
+import { formatOutCome } from '../utils';
 
 export default class WinDrawWin extends Component{
 	renderOutcome(outcome){
@@ -7,14 +8,9 @@ export default class WinDrawWin extends Component{
 	}
 
 	render(){
-		let homeWinPrice = this.props.outcomes[0].price.decimal
-		let drawPrice = this.props.outcomes[1].price.decimal
-		let awayWinPrice = this.props.outcomes[2].price.decimal
-		if(!this.props.use_decimal){
-			homeWinPrice = this.props.outcomes[0].price.num+"/"+this.props.outcomes[0].price.den
-			drawPrice = this.props.outcomes[1].price.num+"/"+this.props.outcomes[1].price.den
-			awayWinPrice = this.props.outcomes[2].price.num+"/"+this.props.outcomes[2].price.den
-		}
+		let homeWinPrice = formatOutCome(this.props.outcomes[0],this.props.use_decimal);
+		let drawPrice = formatOutCome(this.props.outcomes[1],this.props.use_decimal);
+		let awayWinPrice = formatOutCome(this.props.outcomes[2],this.props.use_decimal);
 		return(
 			<div className="outcome-detail">
 				<table className="table table-dark">
