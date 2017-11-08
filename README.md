@@ -15,6 +15,16 @@ API: http://localhost:8888
 
 WS: ws://localhost:8889
 
+```bash
+# running the basic image
+docker run -it --rm --name sbg-tech-test-api -p 8888-8890:8888-8890 sbgtechtest/api
+
+# running using docker compose
+docker-compose up
+
+# running using docker compose in the background
+docker-compose up -d
+```
 
 Websocket Implemented: only in /football/live
 
